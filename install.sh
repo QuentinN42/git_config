@@ -8,6 +8,10 @@ function move_file() {
     cp ./git_config.sh "$HOME/.local/etc/git_config/git_config.sh" || exit 2;
 }
 
+function make_config_folder() {
+    mkdir -p "$HOME/.config/git_config" || exit 3;
+}
+
 
 function zsh_source() {
     # add source git_config into zshrc
@@ -37,6 +41,7 @@ function bash_source_if_exist() {
 
 
 function install() {
+    make_config_folder;
     move_file;
     zsh_source_if_exist;
     bash_source_if_exist;
